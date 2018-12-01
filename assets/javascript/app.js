@@ -2,6 +2,7 @@ var query;
 var beginDate;
 var endDate;
 var quantity;
+var articleNumber = 1;
 
 function ajaxCall(query, beginDate, endDate) {
     var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
@@ -17,7 +18,9 @@ function ajaxCall(query, beginDate, endDate) {
     }).done(function (result) {
         console.log(result);
         console.log(result.response.docs[0].byline.original);
-        $("#article-response").prepend("<p>"+result.response.docs[0].byline.original+"</p>");
+        $("#article-response").prepend("<div id='article-"+articleNumber+"'></div>");
+        $("#article-"+articleNumber).append("<h3 class='article-title'>"+result.response.docs[0].headline.main+"</h3>");
+        $("#article-"+articleNumber).append("<p>"+result.response.docs[0].byline.original+"</p>");
     }).fail(function (err) {
         throw err;
     });
