@@ -15,10 +15,16 @@ function ajaxCall(query, beginDate, endDate) {
         url: url,
         method: 'GET',
     }).done(function (result) {
+        console.log(result);
         console.log(result.response.docs[0].byline.original);
+        $("#article-response").prepend("<p>"+result.response.docs[0].byline.original+"</p>");
     }).fail(function (err) {
         throw err;
     });
+}
+
+function updatePage(){
+
 }
 // ajaxCall("obama", "19000101", "20140101");
 $(":button").on("click", function() {
@@ -33,6 +39,7 @@ $(":button").on("click", function() {
         // console.log(query, beginDate, endDate);
         ajaxCall(query, beginDate, endDate);
         // console.log()
+
     }
 })
 
