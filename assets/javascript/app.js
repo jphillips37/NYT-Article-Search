@@ -15,15 +15,24 @@ function ajaxCall(query, beginDate, endDate) {
         url: url,
         method: 'GET',
     }).done(function (result) {
-        console.log(result);
+        console.log(result.response.docs[0].byline.original);
     }).fail(function (err) {
         throw err;
     });
 }
 // ajaxCall("obama", "19000101", "20140101");
 $(":button").on("click", function() {
-    if ($(this).attr("id") = "submitBtn"){
+    
+    event.preventDefault();
+
+    if ($(this).attr("id") == "submitBtn"){
+        
+        query = $("#searchForm").val();
+        beginDate = $("#startForm").val();
+        endDate = $("#endForm").val();
+        // console.log(query, beginDate, endDate);
         ajaxCall(query, beginDate, endDate);
+        // console.log()
     }
 })
 
